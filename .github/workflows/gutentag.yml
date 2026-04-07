@@ -1,0 +1,24 @@
+name: Gutentag, World!
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: leafo/gh-actions-lua@v10
+        with:
+          luaVersion: "5.4"
+
+      - name: Run
+        run: lua gutentag_world.lua
+
+      - name: Verify output
+        run: bash test.sh
